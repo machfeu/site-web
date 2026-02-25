@@ -781,49 +781,63 @@
     </div>
 
     <div class="contact-cards">
-      <a href="tel:0632002168" class="contact-card">
-        <div class="contact-icon">📞</div>
-        <div>
-          <div class="contact-label">Téléphone</div>
-          <div class="contact-val">06 32 00 21 68</div>
-        </div>
-      </a>
-      <a href="/cdn-cgi/l/email-protection#dfb3baabb7aab6b3b3b6baadf1b5aab39fb8b2beb6b3f1bcb0b2" class="contact-card">
-        <div class="contact-icon">✉️</div>
-        <div>
-          <div class="contact-label">Email</div>
-          <div class="contact-val"><span class="__cf_email__" data-cfemail="8ee2ebfae6fbe7e2e2e7ebfca0e4fbe2cee9e3efe7e2a0ede1e3">[email&#160;protected]</span></div>
-        </div>
-      </a>
-      <div class="contact-card" style="cursor:default;">
-        <div class="contact-icon">📍</div>
-        <div>
-          <div class="contact-label">Secteur principal</div>
-          <div class="contact-val">Redon (35) & alentours</div>
-        </div>
-      </div>
+
+  <!-- Téléphone -->
+  <a href="tel:+33632002168" class="contact-card">
+    <div class="contact-icon">📞</div>
+    <div>
+      <div class="contact-label">Téléphone</div>
+      <div class="contact-val">06 32 00 21 68</div>
+    </div>
+  </a>
+
+  <!-- Email -->
+  <a href="mailto:lethuillier.j@gmail.com" class="contact-card">
+    <div class="contact-icon">✉️</div>
+    <div>
+      <div class="contact-label">Email</div>
+      <div class="contact-val">lethuillier.j@gmail.com</div>
+    </div>
+  </a>
+
+  <!-- Zone -->
+  <div class="contact-card" style="cursor:default;">
+    <div class="contact-icon">📍</div>
+    <div>
+      <div class="contact-label">Secteur principal</div>
+      <div class="contact-val">Redon (35) & alentours</div>
     </div>
   </div>
+
+</div>
+</div>
 </section>
 
 <!-- FOOTER -->
 <footer>
   <strong>Julien Lethuillier — Service à la Personne</strong><br>
   Déclaré SAP · Redon (35)<br>
-  06 32 00 21 68 · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="9bf7feeff3eef2f7f7f2fee9b5f1eef7dbfcf6faf2f7b5f8f4f6">[email&#160;protected]</a><br><br>
-  <span style="font-size:0.75rem;">© 2025 · Le crédit d'impôt est soumis aux conditions de l'article 199 sexdecies du CGI. Plafond petit bricolage : 500 € de crédit / an.</span>
+  <a href="tel:+33632002168">06 32 00 21 68</a> · 
+  <a href="mailto:lethuillier.j@gmail.com">lethuillier.j@gmail.com</a><br><br>
+  <span style="font-size:0.75rem;">
+    © 2025 · Le crédit d'impôt est soumis aux conditions de l'article 199 sexdecies du CGI. 
+    Plafond petit bricolage : 500 € de crédit / an.
+  </span>
 </footer>
 
 <script>
-  // Toujours démarrer en haut de page
   if (history.scrollRestoration) history.scrollRestoration = 'manual';
   window.scrollTo(0, 0);
 
   const els = document.querySelectorAll('.fade-up');
   const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
   els.forEach(el => obs.observe(el));
 </script>
+
 </body>
 </html>
