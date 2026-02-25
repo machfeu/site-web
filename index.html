@@ -1,787 +1,205 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Julien Lethuillier — Service à la Personne · Redon</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Nunito+Sans:wght@400;600&display=swap" rel="stylesheet" />
-
-  <style>
-    :root {
-      --blue: #2B6CB8;
-      --blue-light: #EBF4FF;
-      --blue-mid: #4A90D9;
-      --yellow: #F5A623;
-      --yellow-light: #FFF8EC;
-      --dark: #1A2E45;
-      --gray: #6B7C93;
-      --light: #F7F9FC;
-      --white: #FFFFFF;
-      --green: #27AE60;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Nunito Sans', sans-serif;
-      background: var(--light);
-      color: var(--dark);
-      overflow-x: hidden;
-    }
-
-    /* ── NAV ── */
-    nav {
-      background: var(--white);
-      box-shadow: 0 2px 16px rgba(43,108,184,0.1);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      padding: 0 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 70px;
-    }
-
-    .nav-brand {
-      font-family: 'Nunito', sans-serif;
-      font-weight: 900;
-      font-size: 1.2rem;
-      color: var(--blue);
-      line-height: 1.2;
-    }
-
-    .nav-brand span {
-      display: block;
-      font-size: 0.7rem;
-      font-weight: 600;
-      color: var(--gray);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .nav-cta {
-      background: var(--blue);
-      color: white;
-      text-decoration: none;
-      padding: 0.6rem 1.4rem;
-      border-radius: 50px;
-      font-family: 'Nunito', sans-serif;
-      font-weight: 700;
-      font-size: 0.9rem;
-      transition: all 0.2s;
-      white-space: nowrap;
-    }
-
-    .nav-cta:hover { background: var(--blue-mid); transform: translateY(-1px); box-shadow: 0 4px 14px rgba(43,108,184,0.35); }
-
-    /* ── HERO ── */
-    #hero {
-      background: linear-gradient(135deg, #EBF4FF 0%, #DBEEFF 50%, #EBF4FF 100%);
-      padding: 4rem 2rem 0;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    #hero::before {
-      content: '';
-      position: absolute;
-      top: -60px; right: -60px;
-      width: 300px; height: 300px;
-      background: rgba(43,108,184,0.07);
-      border-radius: 50%;
-    }
-
-    #hero::after {
-      content: '';
-      position: absolute;
-      bottom: 40px; left: -80px;
-      width: 200px; height: 200px;
-      background: rgba(245,166,35,0.08);
-      border-radius: 50%;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--green);
-      color: white;
-      font-family: 'Nunito', sans-serif;
-      font-weight: 700;
-      font-size: 0.8rem;
-      padding: 0.35rem 1rem;
-      border-radius: 50px;
-      margin-bottom: 1.5rem;
-      letter-spacing: 0.05em;
-    }
-
-    .hero-badge::before { content: '✓'; font-size: 0.9rem; }
-
-    .hero-title {
-      font-family: 'Nunito', sans-serif;
-      font-weight: 900;
-      font-size: clamp(2rem, 6vw, 3.5rem);
-      color: var(--dark);
-      line-height: 1.15;
-      margin-bottom: 1rem;
-    }
-
-    .hero-title .highlight {
-      color: var(--blue);
-      position: relative;
-    }
-
-    .hero-sub {
-      font-size: 1.1rem;
-      color: var(--gray);
-      max-width: 540px;
-      margin: 0 auto 2rem;
-      line-height: 1.65;
-    }
-
-    .hero-pills {
-      display: flex;
-      justify-content: center;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-      margin-bottom: 2.5rem;
-    }
-
-    .pill {
-      background: white;
-      color: var(--blue);
-      font-family: 'Nunito', sans-serif;
-      font-weight: 700;
-      font-size: 0.85rem;
-      padding: 0.45rem 1.1rem;
-      border-radius: 50px;
-      box-shadow: 0 2px 10px rgba(43,108,184,0.12);
-    }
-
-    .hero-img {
-      max-width: 320px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-img img {
-      width: 100%;
-      filter: drop-shadow(0 8px 24px rgba(43,108,184,0.15));
-    }
-
-    /* ── WAVE ── */
-    .wave-sep {
-      width: 100%;
-      line-height: 0;
-      background: var(--blue-light);
-    }
-
-    /* ── SECTION GÉNÉRIQUE ── */
-    section { padding: 4rem 1.5rem; }
-
-    .section-tag {
-      display: inline-block;
-      background: var(--blue-light);
-      color: var(--blue);
-      font-family: 'Nunito', sans-serif;
-      font-weight: 800;
-      font-size: 0.75rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 0.3rem 0.9rem;
-      border-radius: 50px;
-      margin-bottom: 0.75rem;
-    }
-
-    .section-title {
-      font-family: 'Nunito', sans-serif;
-      font-weight: 900;
-      font-size: clamp(1.6rem, 4vw, 2.4rem);
-      color: var(--dark);
-      margin-bottom: 0.5rem;
-      line-height: 1.2;
-    }
-
-    .section-sub {
-      color: var(--gray);
-      font-size: 1rem;
-      max-width: 520px;
-      line-height: 1.6;
-      margin-bottom: 2.5rem;
-    }
-
-    /* ── AVANTAGE SAP ── */
-    #avantage {
-      background: var(--blue);
-      color: white;
-      text-align: center;
-      padding: 3rem 1.5rem;
-    }
-
-    #avantage .section-tag {
-      background: rgba(255,255,255,0.15);
-      color: white;
-    }
-
-    #avantage .section-title { color: white; }
-
-    .avantage-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.25rem;
-      max-width: 860px;
-      margin: 0 auto;
-    }
-
-    .avantage-card {
-      background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 20px;
-      padding: 1.75rem 1.25rem;
-      text-align: center;
-      backdrop-filter: blur(4px);
-    }
-
-    .avantage-num {
-      font-family: 'Nunito', sans-serif;
-      font-weight: 900;
-      font-size: 2.8rem;
-      color: var(--yellow);
-      line-height: 1;
-      margin-bottom: 0.25rem;
-    }
-
-    .avantage-label {
-      font-size: 0.9rem;
-      opacity: 0.9;
-      line-height: 1.4;
-    }
-
-    .avantage-note {
-      margin-top: 2rem;
-      font-size: 0.85rem;
-      opacity: 0.75;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.6;
-      background: rgba(255,255,255,0.08);
-      border-radius: 14px;
-      padding: 1rem 1.5rem;
-    }
-
-    /* ── SERVICES ── */
-    #services {
-      background: var(--white);
-    }
-
-    .services-inner {
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .service-card {
-      background: var(--light);
-      border-radius: 20px;
-      overflow: hidden;
-      transition: transform 0.25s, box-shadow 0.25s;
-      border: 2px solid transparent;
-    }
-
-    .service-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 32px rgba(43,108,184,0.15);
-      border-color: var(--blue-mid);
-    }
-
-    .service-img {
-      width: 100%;
-      aspect-ratio: 1;
-      object-fit: cover;
-      background: var(--blue-light);
-      display: block;
-    }
-
-    .service-body {
-      padding: 1.25rem;
-    }
-
-    .service-name {
-      font-family: 'Nunito', sans-serif;
-      font-weight: 800;
-      font-size: 1.05rem;
-      color: var(--dark);
-      margin-bottom: 0.4rem;
-    }
-
-    .service-desc {
-      font-size: 0.88rem;
-      color: var(--gray);
-      line-height: 1.55;
-    }
-
-    .service-sap {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-      margin-top: 0.75rem;
-      background: #E8F8EF;
-      color: var(--green);
-      font-family: 'Nunito', sans-serif;
-      font-weight: 700;
-      font-size: 0.75rem;
-      padding: 0.25rem 0.7rem;
-      border-radius: 50px;
-    }
-
-    /* ── POURQUOI ── */
-    #pourquoi {
-      background: var(--yellow-light);
-    }
-
-    .why-inner {
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .why-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 1.25rem;
-    }
-
-    .why-card {
-      background: white;
-      border-radius: 18px;
-      padding: 1.5rem 1.25rem;
-      text-align: center;
-      box-shadow: 0 4px 16px rgba(245,166,35,0.12);
-    }
-
-    .why-icon {
-      font-size: 2.2rem;
-      margin-bottom: 0.75rem;
-      display: block;
-    }
-
-    .why-title {
-      font-family: 'Nunito', sans-serif;
-      font-weight: 800;
-      font-size: 1rem;
-      color: var(--dark);
-      margin-bottom: 0.35rem;
-    }
-
-    .why-text {
-      font-size: 0.85rem;
-      color: var(--gray);
-      line-height: 1.5;
-    }
-
-    /* ── ZONE ── */
-    #zone {
-      background: var(--white);
-    }
-
-    .zone-inner {
-      max-width: 860px;
-      margin: 0 auto;
-    }
-
-    .zone-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: 1rem;
-    }
-
-    .zone-card {
-      background: var(--light);
-      border-radius: 16px;
-      padding: 1.25rem;
-      border-left: 4px solid var(--blue);
-      transition: all 0.2s;
-    }
-
-    .zone-card.main {
-      border-left-color: var(--green);
-      background: #E8F8EF;
-    }
-
-    .zone-card:hover {
-      transform: translateX(4px);
-      box-shadow: 0 4px 16px rgba(43,108,184,0.1);
-    }
-
-    .zone-city {
-      font-family: 'Nunito', sans-serif;
-      font-weight: 800;
-      font-size: 1rem;
-      color: var(--dark);
-      margin-bottom: 0.2rem;
-    }
-
-    .zone-info {
-      font-size: 0.8rem;
-      color: var(--gray);
-    }
-
-    /* ── CONTACT ── */
-    #contact {
-      background: linear-gradient(135deg, #EBF4FF, #DBEEFF);
-      text-align: center;
-    }
-
-    .contact-inner {
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    .contact-hero-img {
-      max-width: 200px;
-      margin: 0 auto 1.5rem;
-    }
-
-    .contact-hero-img img {
-      width: 100%;
-      filter: drop-shadow(0 8px 20px rgba(43,108,184,0.2));
-    }
-
-    .contact-cards {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-
-    .contact-card {
-      background: white;
-      border-radius: 18px;
-      padding: 1.25rem 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      text-decoration: none;
-      color: var(--dark);
-      box-shadow: 0 4px 16px rgba(43,108,184,0.1);
-      transition: all 0.2s;
-      text-align: left;
-    }
-
-    .contact-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 28px rgba(43,108,184,0.18);
-    }
-
-    .contact-icon {
-      width: 48px; height: 48px;
-      background: var(--blue);
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      font-size: 1.3rem;
-    }
-
-    .contact-label {
-      font-size: 0.75rem;
-      color: var(--gray);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-weight: 600;
-      margin-bottom: 0.15rem;
-    }
-
-    .contact-val {
-      font-family: 'Nunito', sans-serif;
-      font-weight: 800;
-      font-size: 1.05rem;
-      color: var(--blue);
-    }
-
-    /* ── FOOTER ── */
-    footer {
-      background: var(--dark);
-      color: rgba(255,255,255,0.5);
-      text-align: center;
-      padding: 2rem 1.5rem;
-      font-size: 0.82rem;
-      line-height: 1.8;
-    }
-
-    footer strong { color: rgba(255,255,255,0.85); }
-
-    /* ── RESPONSIVE ── */
-    @media (min-width: 768px) {
-      #hero { padding: 5rem 4rem 0; }
-      nav { padding: 0 4rem; }
-      section { padding: 5rem 4rem; }
-      #avantage { padding: 4rem; }
-      #contact { padding: 5rem 4rem; }
-    }
-
-    /* ── ANIMATIONS ── */
-    .fade-up {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    .fade-up.visible { opacity: 1; transform: none; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Julien Lethuillier — Service à la Personne · Redon</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin:0;
+  font-family:'Nunito', sans-serif;
+  background:#f7f9fc;
+  color:#1A2E45;
+}
+
+nav {
+  background:white;
+  padding:20px 40px;
+  box-shadow:0 2px 10px rgba(0,0,0,0.05);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+nav strong { font-weight:900; }
+
+nav a {
+  background:#2B6CB8;
+  color:white;
+  padding:10px 18px;
+  border-radius:30px;
+  text-decoration:none;
+  font-weight:700;
+}
+
+section {
+  padding:60px 20px;
+  max-width:1100px;
+  margin:auto;
+}
+
+h1,h2 {
+  font-weight:900;
+  text-align:center;
+}
+
+.hero {
+  text-align:center;
+  background:#EBF4FF;
+}
+
+.hero img {
+  max-width:300px;
+  margin-top:30px;
+}
+
+.services-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:25px;
+  margin-top:40px;
+}
+
+.card {
+  background:white;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 6px 20px rgba(0,0,0,0.06);
+  transition:0.3s;
+}
+
+.card:hover {
+  transform:translateY(-5px);
+}
+
+.card img {
+  width:100%;
+  aspect-ratio:1/1;
+  object-fit:cover;
+}
+
+.card-body {
+  padding:20px;
+}
+
+.card-body h3 {
+  margin:0 0 10px 0;
+  font-size:1.1rem;
+}
+
+.badge {
+  display:inline-block;
+  margin-top:10px;
+  background:#E8F8EF;
+  color:#27AE60;
+  padding:5px 12px;
+  border-radius:20px;
+  font-size:0.75rem;
+  font-weight:700;
+}
+
+footer {
+  background:#1A2E45;
+  color:white;
+  text-align:center;
+  padding:40px 20px;
+  margin-top:60px;
+}
+</style>
 </head>
+
 <body>
 
-<!-- NAV -->
 <nav>
-  <div class="nav-brand">
-    Julien Lethuillier
-    <span>Service à la Personne · Redon</span>
+  <div>
+    <strong>Julien Lethuillier</strong><br>
+    <small>Service à la Personne · Redon</small>
   </div>
-  <a href="#contact" class="nav-cta">📞 Appeler</a>
+  <a href="tel:0632002168">Appeler</a>
 </nav>
 
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-badge">Déclaré Service à la Personne</div>
-  <h1 class="hero-title">
-    Le petit bricolage<br>
-    <span class="highlight">simple & rapide</span><br>
-    à votre domicile
-  </h1>
-  <p class="hero-sub">
-    Disponible, rapide et efficace. Je me déplace chez vous pour tous vos petits travaux du quotidien — et vous bénéficiez d'un avantage fiscal.
-  </p>
-  <div class="hero-pills">
-    <span class="pill">⚡ Disponible rapidement</span>
-    <span class="pill">✅ SAP déclaré</span>
-    <span class="pill">📍 Redon & alentours</span>
-  </div>
-  <div class="hero-img">
-    <img src="Gemini_Generated_Image_4vyzk24vyzk24vyz.png" alt="Julien Lethuillier artisan" />
+<section class="hero">
+  <h1>Petit bricolage à domicile</h1>
+  <p>Disponible, rapide et efficace — Crédit d'impôt 50%</p>
+  <img src="Gemini_Generated_Image_4vyzk24vyzk24vyz.png" alt="Artisan">
+</section>
+
+<section>
+  <h2>Mes prestations</h2>
+
+  <div class="services-grid">
+
+    <!-- Rideaux -->
+    <div class="card">
+      <img src="Gemini_Generated_Image_o5me4oo5me4oo5me.png" alt="Pose de rideaux">
+      <div class="card-body">
+        <h3>Pose de rideaux & tringles</h3>
+        <p>Installation de tringles et rideaux, fixation propre et solide.</p>
+        <span class="badge">✓ Éligible SAP</span>
+      </div>
+    </div>
+
+    <!-- Étagères -->
+    <div class="card">
+      <img src="Gemini_Generated_Image_83i4si83i4si83i4.png" alt="Fixation étagères">
+      <div class="card-body">
+        <h3>Fixation d'étagères & tableaux</h3>
+        <p>Pose murale sécurisée avec chevilles adaptées.</p>
+        <span class="badge">✓ Éligible SAP</span>
+      </div>
+    </div>
+
+    <!-- Joints -->
+    <div class="card">
+      <img src="Gemini_Generated_Image_kay19tkay19tkay1.png" alt="Remplacement de joints">
+      <div class="card-body">
+        <h3>Remplacement de joints</h3>
+        <p>Lavabo, douche, baignoire — évitez les infiltrations.</p>
+        <span class="badge">✓ Éligible SAP</span>
+      </div>
+    </div>
+
+    <!-- Petites réparations -->
+    <div class="card">
+      <img src="Gemini_Generated_Image_vc8lusvc8lusvc8l.png" alt="Petites réparations">
+      <div class="card-body">
+        <h3>Petites fixations & réparations</h3>
+        <p>Poignées, cadres, petits travaux du quotidien.</p>
+        <span class="badge">✓ Éligible SAP</span>
+      </div>
+    </div>
+
+    <!-- Luminaires -->
+    <div class="card">
+      <img src="Gemini_Generated_Image_927vfu927vfu927v.png" alt="Luminaires">
+      <div class="card-body">
+        <h3>Pose de luminaires simples</h3>
+        <p>Installation de plafonniers et appliques sur circuit existant.</p>
+        <span class="badge">✓ Éligible SAP</span>
+      </div>
+    </div>
+
+    <!-- Meubles -->
+    <div class="card">
+      <img src="Gemini_Generated_Image_dy9sledy9sledy9s.png" alt="Montage meubles">
+      <div class="card-body">
+        <h3>Montage de meubles en kit</h3>
+        <p>IKEA, But, Conforama — montage rapide et soigné.</p>
+        <span class="badge">✓ Éligible SAP</span>
+      </div>
+    </div>
+
   </div>
 </section>
 
-<!-- AVANTAGE FISCAL -->
-<section id="avantage">
-  <div class="section-tag">Avantage fiscal</div>
-  <h2 class="section-title" style="color:white; margin-bottom:0.5rem;">Jusqu'à 50% remboursé</h2>
-  <p style="opacity:0.8; margin-bottom:2rem; font-size:0.95rem;">Crédit d'impôt pour les services à la personne</p>
-
-  <div class="avantage-grid">
-    <div class="avantage-card fade-up">
-      <div class="avantage-num">50%</div>
-      <div class="avantage-label">du montant des prestations<br>remboursé en crédit d'impôt</div>
-    </div>
-    <div class="avantage-card fade-up" style="transition-delay:0.1s">
-      <div class="avantage-num">500€</div>
-      <div class="avantage-label">maximum de crédit d'impôt<br>par an pour le petit bricolage</div>
-    </div>
-    <div class="avantage-card fade-up" style="transition-delay:0.2s">
-      <div class="avantage-num">1 000€</div>
-      <div class="avantage-label">de prestations SAP<br>concernées par an</div>
-    </div>
-  </div>
-
-  <div class="avantage-note">
-    ℹ️ Conformément à l'article 199 sexdecies du Code général des impôts, les dépenses de petit bricolage à domicile effectuées auprès d'un prestataire déclaré ouvrent droit à un crédit d'impôt de 50%, dans la limite d'un plafond annuel de 500 € de crédit (soit 1 000 € de dépenses). Je vous remets une attestation fiscale annuelle pour votre déclaration d'impôts.
-  </div>
-</section>
-
-<!-- SERVICES -->
-<section id="services">
-  <div class="services-inner">
-    <div class="section-tag">Ce que je fais</div>
-    <h2 class="section-title">Mes prestations</h2>
-    <p class="section-sub">Des interventions rapides pour votre quotidien, toutes éligibles au crédit d'impôt SAP.</p>
-
-    <div class="services-grid">
-
-      <div class="service-card fade-up">
-        <!-- Image : homme qui pose une tringle à rideaux -->
-        <img class="service-img" src="Gemini_Generated_Image_o5me4oo5me4oo5me.png" alt="Pose de rideaux" />
-        <div class="service-body">
-          <div class="service-name">Pose de rideaux & tringles</div>
-          <div class="service-desc">Installation de tringles à rideaux, voilages, portières — rapide et bien fixé.</div>
-          <span class="service-sap">✓ Éligible SAP</span>
-        </div>
-      </div>
-
-      <div class="service-card fade-up" style="transition-delay:0.1s">
-        <!-- Image : homme qui visse une étagère murale -->
-        <img class="service-img" src="Gemini_Generated_Image_83i4si83i4si83i4.png" alt="Fixation étagères" />
-        <div class="service-body">
-          <div class="service-name">Fixation d'étagères & tableaux</div>
-          <div class="service-desc">Pose d'étagères murales, tableaux, miroirs, cadres — chevilles et fixations adaptées au mur.</div>
-          <span class="service-sap">✓ Éligible SAP</span>
-        </div>
-      </div>
-
-      <div class="service-card fade-up" style="transition-delay:0.15s">
-        <!-- Image : homme qui applique du silicone / joint en cuisine -->
-        <img class="service-img" src="Gemini_Generated_Image_kay19tkay19tkay1.png" alt="Remplacement de joint" />
-        <div class="service-body">
-          <div class="service-name">Remplacement de joints</div>
-          <div class="service-desc">Joint de lavabo, baignoire, douche, évier — un geste simple pour éviter les infiltrations.</div>
-          <span class="service-sap">✓ Éligible SAP</span>
-        </div>
-      </div>
-
-      <div class="service-card fade-up" style="transition-delay:0.2s">
-        <!-- Image : homme qui accroche un cadre -->
-        <img class="service-img" src="Gemini_Generated_Image_vc8lusvc8lusvc8l.png" alt="Accrochage cadres" />
-        <div class="service-body">
-          <div class="service-name">Accrochage de cadres & miroirs</div>
-          <div class="service-desc">Mise en place de tableaux, miroirs, décorations murales — bien droits et bien fixés.</div>
-          <span class="service-sap">✓ Éligible SAP</span>
-        </div>
-      </div>
-
-      <div class="service-card fade-up" style="transition-delay:0.25s">
-        <!-- Image : homme qui change une ampoule au plafond -->
-        <img class="service-img" src="Gemini_Generated_Image_927vfu927vfu927v.png" alt="Luminaires" />
-        <div class="service-body">
-          <div class="service-name">Pose de luminaires simples</div>
-          <div class="service-desc">Remplacement d'ampoule, installation d'appliques ou de plafonnier sur circuit existant.</div>
-          <span class="service-sap">✓ Éligible SAP</span>
-        </div>
-      </div>
-
-      <div class="service-card fade-up" style="transition-delay:0.3s">
-        <!-- Image : homme artisan avec boîte à outils -->
-        <img class="service-img" src="Gemini_Generated_Image_4vyzk24vyzk24vyz.png" alt="Autres petits travaux" />
-        <div class="service-body">
-          <div class="service-name">Autres petits travaux</div>
-          <div class="service-desc">Poignées de portes, petites réparations, montage de meubles en kit… Dites-moi ce qu'il vous faut !</div>
-          <span class="service-sap">✓ Éligible SAP</span>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- POURQUOI -->
-<section id="pourquoi">
-  <div class="why-inner">
-    <div class="section-tag">Pourquoi moi ?</div>
-    <h2 class="section-title">Disponible, rapide, efficace</h2>
-    <p class="section-sub">Un service personnalisé à taille humaine.</p>
-
-    <div class="why-grid">
-      <div class="why-card fade-up">
-        <span class="why-icon">⚡</span>
-        <div class="why-title">Réactif</div>
-        <div class="why-text">Je réponds vite et m'organise pour intervenir dans les meilleurs délais.</div>
-      </div>
-      <div class="why-card fade-up" style="transition-delay:0.1s">
-        <span class="why-icon">🛠️</span>
-        <div class="why-title">Efficace</div>
-        <div class="why-text">Travail soigné, bonne humeur et matériel adapté. Vous n'avez rien à prévoir.</div>
-      </div>
-      <div class="why-card fade-up" style="transition-delay:0.15s">
-        <span class="why-icon">🤝</span>
-        <div class="why-title">De confiance</div>
-        <div class="why-text">Déclaré SAP, devis clair, pas de mauvaise surprise sur la facture.</div>
-      </div>
-      <div class="why-card fade-up" style="transition-delay:0.2s">
-        <span class="why-icon">📄</span>
-        <div class="why-title">Attestation fiscale</div>
-        <div class="why-text">Je vous fournis chaque année l'attestation pour votre crédit d'impôt.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ZONE -->
-<section id="zone">
-  <div class="zone-inner">
-    <div class="section-tag">Zone d'intervention</div>
-    <h2 class="section-title">Où j'interviens</h2>
-    <p class="section-sub">Basé à Redon. Pour les villes plus éloignées, des frais de déplacement s'ajoutent selon la distance — je vous en informe avant toute intervention.</p>
-
-    <div class="zone-grid">
-      <div class="zone-card main fade-up">
-        <div class="zone-city">📍 Redon</div>
-        <div class="zone-info">Base principale · Sans frais de déplacement</div>
-      </div>
-      <div class="zone-card fade-up" style="transition-delay:0.1s">
-        <div class="zone-city">🏙️ Rennes</div>
-        <div class="zone-info">Frais de déplacement selon chantier</div>
-      </div>
-      <div class="zone-card fade-up" style="transition-delay:0.15s">
-        <div class="zone-city">🌊 Nantes</div>
-        <div class="zone-info">Frais de déplacement selon chantier</div>
-      </div>
-      <div class="zone-card fade-up" style="transition-delay:0.2s">
-        <div class="zone-city">⚓ Saint-Nazaire</div>
-        <div class="zone-info">Frais de déplacement selon chantier</div>
-      </div>
-      <div class="zone-card fade-up" style="transition-delay:0.25s">
-        <div class="zone-city">🏰 Vannes</div>
-        <div class="zone-info">Frais de déplacement selon chantier</div>
-      </div>
-      <div class="zone-card fade-up" style="transition-delay:0.3s">
-        <div class="zone-city">🗺️ Alentours</div>
-        <div class="zone-info">Toute la région — me contacter</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="contact-inner">
-    <div class="section-tag">Me contacter</div>
-    <h2 class="section-title">Parlons de votre besoin</h2>
-    <p class="section-sub" style="margin:0 auto 1.5rem;">Devis gratuit, réponse rapide. N'hésitez pas à m'appeler ou m'écrire !</p>
-
-    <div class="contact-hero-img">
-      <img src="Gemini_Generated_Image_4vyzk24vyzk24vyz.png" alt="Julien Lethuillier" />
-    </div>
-
-    <div class="contact-cards">
-      <a href="tel:0632002168" class="contact-card">
-        <div class="contact-icon">📞</div>
-        <div>
-          <div class="contact-label">Téléphone</div>
-          <div class="contact-val">06 32 00 21 68</div>
-        </div>
-      </a>
-      <a href="/cdn-cgi/l/email-protection#721e17061a071b1e1e1b17005c18071e32151f131b1e5c111d1f" class="contact-card">
-        <div class="contact-icon">✉️</div>
-        <div>
-          <div class="contact-label">Email</div>
-          <div class="contact-val"><span class="__cf_email__" data-cfemail="84e8e1f0ecf1ede8e8ede1f6aaeef1e8c4e3e9e5ede8aae7ebe9">[email&#160;protected]</span></div>
-        </div>
-      </a>
-      <div class="contact-card" style="cursor:default;">
-        <div class="contact-icon">📍</div>
-        <div>
-          <div class="contact-label">Secteur principal</div>
-          <div class="contact-val">Redon (35) & alentours</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
 <footer>
-  <strong>Julien Lethuillier — Service à la Personne</strong><br>
-  Déclaré SAP · Redon (35)<br>
-  06 32 00 21 68 · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="553930213d203c39393c30277b3f2039153238343c397b363a38">[email&#160;protected]</a><br><br>
-  <span style="font-size:0.75rem;">© 2025 · Le crédit d'impôt est soumis aux conditions de l'article 199 sexdecies du CGI. Plafond petit bricolage : 500 € de crédit / an.</span>
+  Julien Lethuillier — Service à la Personne<br>
+  06 32 00 21 68 · lethuillier.jul@gmail.com<br>
+  Redon (35)
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts
+</body>
+</html>
